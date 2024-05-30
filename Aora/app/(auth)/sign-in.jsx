@@ -2,10 +2,10 @@ import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
-import FormField from '../../components/FormField/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
 import { signIn } from '../../lib/appwrite'
+import FormField from '../../components/FormField'
 
 const SignIn = () => {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -23,9 +23,9 @@ const SignIn = () => {
 
     try {
       await signIn(form.email, form.password);
-      // const result = await getCurrentUser();
-      // setUser(result);
-      // setIsLogged(true);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
 
       Alert.alert("Success", "User signed in successfully");
       router.replace("/home");
@@ -58,7 +58,7 @@ const SignIn = () => {
 
           <CustomButton
             title="Sign In"
-            // handlePress={submit}
+            handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />
