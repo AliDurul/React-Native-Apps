@@ -2,14 +2,14 @@ import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 
-// import useAppwrite from "../../lib/useAppwrite";
-// import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
-import { EmptyState, SearchInput, Trending, VideoCard } from "../../components";
 import { images } from "../../constants";
+import useAppwrite from "../../lib/useAppwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
+import { EmptyState, SearchInput, Trending, VideoCard } from "../../components";
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
-  // const { data: latestPosts } = useAppwrite(getLatestPosts);
+  const { data: latestPosts } = useAppwrite(getLatestPosts);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -19,7 +19,12 @@ const Home = () => {
     setRefreshing(false);
   };
 
+  // one flatlist
+  // with list header
+  // and horizontal flatlist
 
+  //  we cannot do that with just scrollview as there's both horizontal and vertical scroll (two flat lists, within trending)
+console.log(item);
   return (
     <SafeAreaView className="bg-primary">
       <FlatList
