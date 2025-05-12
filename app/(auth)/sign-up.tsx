@@ -5,12 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import CustomButton from "@/components/CustomButton";
 import FormField from "@/components/FormField";
+import { useGlobalContext } from "@/context/GlobalProvider";
+import { registerUser } from "@/lib/api";
 import { images } from "../../constants";
 // import { createUser } from "../../lib/appwrite";
 // import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignUp = () => {
-  // const { setUser, setIsLogged } = useGlobalContext();
+  const { setUser, setIsLogged , setToken} = useGlobalContext();
 
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
@@ -26,9 +28,11 @@ const SignUp = () => {
 
     setSubmitting(true);
     try {
-      // const result = await createUser(form.email, form.password, form.username);
-      // setUser(result);
-      // setIsLogged(true);
+      const result = await registerUser(form.email, form.password, form.username);
+
+      setUser(result.user);
+      setToken(result.token);
+      setIsLogged(true);
 
       router.replace("/home");
     } catch (error:unknown) {
