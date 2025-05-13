@@ -2,13 +2,16 @@ import { useState } from "react";
 import { FlatList, Image, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { useGlobalContext } from "@/context/GlobalProvider";
 import { getLatestVideos, getVideos } from "@/lib/api";
 import useFetch from "@/lib/useFetch";
-import { EmptyState, SearchInput, Trending, VideoCard } from "../../components/intex";
+import { EmptyState, Loader, SearchInput, Trending, VideoCard } from "../../components/intex";
 import { images } from "../../constants";
 
 const Home = () => {
-  const { data: posts, refetch } = useFetch(getVideos);
+  const { user } = useGlobalContext();
+  const { data: posts, refetch, loading: loadingPosts } = useFetch(getVideos);
+
   const { data: latestPosts } = useFetch(getLatestVideos);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -18,7 +21,7 @@ const Home = () => {
     setRefreshing(false);
   };
   return (
-    <SafeAreaView className="bg-primary">
+    <SafeAreaView className="bg-primary h-full">
       <FlatList
         data={posts}
         keyExtractor={(item: any) => item._id}
@@ -39,7 +42,7 @@ const Home = () => {
                   Welcome Back
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  JSMastery
+                  {user?.username}
                 </Text>
               </View>
 
@@ -64,10 +67,14 @@ const Home = () => {
           </View>
         )}
         ListEmptyComponent={() => (
-          <EmptyState
-            title="No Videos Found"
-            subtitle="No videos created yet"
-          />
+          loadingPosts ? (
+            <Loader isLoading={true} />
+          ) : (
+            <EmptyState
+              title="No Videos Found"
+              subtitle="No videos created yet"
+            />
+          )
         )}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

@@ -17,19 +17,20 @@ export default function SignIn() {
   });
 
   const submit = async () => {
-    if (form.email === "" || form.password === "") {
-      Alert.alert("Error", "Please fill in all fields");
-    }
+    // if (form.email === "" || form.password === "") {
+    //   Alert.alert("Error", "Please fill in all fields");
+    // }
 
     setSubmitting(true);
 
     try {
-      const result = await loginUser(form.email, form.password);
+      // const result = await loginUser(form.email, form.password);
+      const result = await loginUser('alidrl26@gmail.com', 'Auro2021.,?');
       setUser(result.user);
       setToken(result.token);
       setIsLogged(true);
 
-      Alert.alert("Success", "User signed in successfully");
+      // Alert.alert("Success", "User signed in successfully");
       router.replace("/home");
     } catch (error: unknown) {
       Alert.alert("Error", (error as Error).message);
@@ -68,9 +69,9 @@ export default function SignIn() {
           />
 
           <FormField
-            title="Password:"
-            placeholder='Enter your password'
+            title="Password"
             value={form.password}
+            placeholder='Enter your password'
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />

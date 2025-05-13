@@ -20,17 +20,25 @@ export interface ILoginUser {
 }
 
 
-const fetchData = async (api: string, method: 'GET' | 'POST' | 'DELETE' | 'PUT', body: object | null = null) => {
+const fetchData = async (api: string, method: 'GET' | 'POST' | 'DELETE' | 'PUT', body: object = {}, token: string | null = null) => {
     try {
-        const response = await fetch(`${API_URL}${api}`, {
+        const fetchOptions: any = {
             method,
             headers: {
                 accept: "application/json",
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${process.env.EXPO_PUBLIC_API_KEY}`,
             },
-            body: body ? JSON.stringify(body) : null,
-        });
+        };
+
+        if (method !== 'GET' && Object.keys(body).length > 0) {
+            fetchOptions.body = JSON.stringify(body);
+        }
+
+        if (token) {
+            fetchOptions.headers.Authorization = `Token ${token}`;
+        }
+
+        const response = await fetch(`${API_URL}${api}`, fetchOptions);
         const result = await response.json();
 
         if (!response.ok && result.success === false) {
@@ -39,7 +47,7 @@ const fetchData = async (api: string, method: 'GET' | 'POST' | 'DELETE' | 'PUT',
 
         return result
     } catch (error: unknown) {
-        console.log('Something went wrong:', (error as Error).message);
+        console.log('Something went wrong:', error);
         throw new Error((error as Error).message);
     }
 };
@@ -61,6 +69,14 @@ export const registerUser = async (email: string, password: string, username: st
     return fetchData(api, method, body);
 };
 
+export const signOutUser = async (token: string) => {
+    const api = '/auth/logout';
+    const method = 'POST';
+
+
+    return fetchData(api, method, {}, token);
+}
+
 export const getUser = async (userId: string) => {
     const api = `/users/${userId}`;
     const method = 'GET';
@@ -76,9 +92,17 @@ export const getVideos = async () => {
     return fetchData(api, method);
 };
 
+export const getVideosWithQuery = async (query: string) => {
+    const api = `/videos/?${query}`;
+    const method = 'GET';
+
+    return fetchData(api, method);
+};
+
 export const getLatestVideos = async () => {
     const api = '/videos/?sort[createdAt]=desc&limit=6';
     const method = 'GET';
 
     return fetchData(api, method);
 };
+

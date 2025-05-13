@@ -1,27 +1,44 @@
-import { ResizeMode, Video } from "expo-av";
-import { useState } from "react";
+import { useVideoPlayer, VideoView } from 'expo-video';
+import { useEffect, useState } from "react";
 import {
     FlatList,
     Image,
     ImageBackground,
     TouchableOpacity,
+    View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import { icons } from "../constants";
 
 const zoomIn = {
-    0: {scale: 0.9},
-    1: { scale: 1.1 }
+    0: { scale: 0.9 },
+    1: { scale: 1 }
 };
 
 const zoomOut = {
-    0: {scale: 1},
-    1: {scale: 0.9}
+    0: { scale: 1 },
+    1: { scale: 0.9 }
 };
 
-const TrendingItem = ({ activeItem, item }:any) => {
+const TrendingItem = ({ activeItem, item }: any) => {
     const [play, setPlay] = useState(false);
+
+    const player = useVideoPlayer(play ? item.video : null, player => {
+        if (play) {
+            player.play();
+        }
+    });
+
+    // const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+
+    // Stop playing when this item is no longer active
+    useEffect(() => {
+        if (activeItem !== item._id && play) {
+            setPlay(false);
+            player?.pause();
+        }
+    }, [activeItem, item._id]);
 
     return (
         <Animatable.View
@@ -30,40 +47,40 @@ const TrendingItem = ({ activeItem, item }:any) => {
             animation={activeItem === item._id ? zoomIn : zoomOut}
             duration={500}
         >
-            {play ? (
-                <Video
-                    source={{ uri: item.video }}
-                    className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
-                    resizeMode={ResizeMode.CONTAIN}
-                    useNativeControls
-                    shouldPlay
-                    onPlaybackStatusUpdate={(status:any) => {
-                        if (status.didJustFinish) {
-                            setPlay(false);
-                        }
-                    }}
-                />
-            ) : (
-                <TouchableOpacity
-                    className="relative flex justify-center items-center"
-                    activeOpacity={0.7}
-                    onPress={() => setPlay(true)}
-                >
-                    <ImageBackground
-                        source={{
-                            uri: item.thumbnail,
-                        }}
-                        className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
-                        resizeMode="cover"
-                    />
+            <View className='w-52 h-80 mt-1'>
+                {play ? (
+                    <VideoView
+                        player={player}
+                        className="w-full h-full rounded-[33px] mt-3 "
+                        contentFit="cover"
+                        allowsFullscreen
+                        allowsPictureInPicture
+                        nativeControls={false}
 
-                    <Image
-                        source={icons.play}
-                        className="w-12 h-12 absolute"
-                        resizeMode="contain"
                     />
-                </TouchableOpacity>
-            )}
+                ) : (
+                    <TouchableOpacity
+                        className="relative flex justify-center items-center"
+                        activeOpacity={0.7}
+                        onPress={() => setPlay(true)}
+                    >
+                        <ImageBackground
+                            source={{
+                                uri: item.thumbnail,
+                            }}
+                            className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
+                            resizeMode="cover"
+                        />
+
+                        <Image
+                            source={icons.play}
+                            className="w-12 h-12 absolute"
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                )}
+            </View>
+
         </Animatable.View>
     );
 };
@@ -90,7 +107,7 @@ const Trending = ({ posts }: any) => {
                 itemVisiblePercentThreshold: 70,
             }}
             // @ts-ignore
-            contentOffset={{ x: 170, }}
+            contentOffset={{ x: 170 }}
         />
     );
 };
