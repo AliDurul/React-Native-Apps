@@ -1,3 +1,5 @@
+import * as DocumentPicker from 'expo-document-picker';
+
 const API_URL = process.env.EXPO_PUBLIC_API_URL!
 
 export interface FetchDataResponse {
@@ -106,3 +108,25 @@ export const getLatestVideos = async () => {
     return fetchData(api, method);
 };
 
+
+interface ICreateVideoPost {
+    title: string;
+    prompt: string;
+    video: DocumentPicker.DocumentPickerAsset | null;
+    thumbnail: DocumentPicker.DocumentPickerAsset | null;
+    token: string | null;
+}
+
+export const createVideoPost = ({ title, prompt, video, thumbnail, token }: ICreateVideoPost) => {
+    const api = '/videos';
+    const method = 'POST';
+
+    const body = {
+        title,
+        prompt,
+        video,
+        thumbnail,
+    };
+
+    return fetchData(api, method, body, token);
+};

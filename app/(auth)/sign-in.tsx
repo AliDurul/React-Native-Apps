@@ -5,7 +5,7 @@ import { useGlobalContext } from '@/context/GlobalProvider'
 import { loginUser } from '@/lib/api'
 import { Link, router } from 'expo-router'
 import React, { useState } from 'react'
-import { Alert, Image, SafeAreaView, ScrollView, Text, View } from 'react-native'
+import { Alert, Dimensions, Image, SafeAreaView, ScrollView, Text, View } from 'react-native'
 
 export default function SignIn() {
   const { setUser, setIsLogged, setToken } = useGlobalContext();
@@ -17,15 +17,15 @@ export default function SignIn() {
   });
 
   const submit = async () => {
-    // if (form.email === "" || form.password === "") {
-    //   Alert.alert("Error", "Please fill in all fields");
-    // }
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
+      return;
+    }
 
     setSubmitting(true);
 
     try {
-      // const result = await loginUser(form.email, form.password);
-      const result = await loginUser('alidrl26@gmail.com', 'Auro2021.,?');
+      const result = await loginUser(form.email, form.password);
       setUser(result.user);
       setToken(result.token);
       setIsLogged(true);
@@ -43,10 +43,10 @@ export default function SignIn() {
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
         <View
-          className="w-full min-h-[90vh] flex justify-center items-center  px-4 my-6"
-        // style={{
-        //   minHeight: Dimensions.get("window").height - 100,
-        // }}
+          className="w-full flex justify-center items-center  px-4 my-6"
+          style={{
+            minHeight: Dimensions.get("window").height - 100,
+          }}
         >
           <Image
             source={images.logo}

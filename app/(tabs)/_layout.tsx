@@ -62,7 +62,7 @@ export default function TabsLayout() {
             ),
           }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="bookmark"
           options={{
             title: "Bookmark",
@@ -76,7 +76,7 @@ export default function TabsLayout() {
               />
             ),
           }}
-        />
+        /> */}
 
         <Tabs.Screen
           name="create"
