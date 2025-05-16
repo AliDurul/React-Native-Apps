@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "expo-starter",
-    "slug": "expo-starter",
+    "name": "auro",
+    "slug": "auro",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo-small.png",
-    "scheme": "expostarter",
+    "scheme": "auro",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -16,19 +16,20 @@
         "foregroundImage": "./assets/images/logo-small.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.alidrl.auroapp"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo-small.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo-small.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -41,7 +42,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "07ae9270-07e4-467d-9534-92a43df35165"
+        "projectId": "71e4014e-28e4-4ed0-8595-c11137f697ba"
       }
     }
   }
