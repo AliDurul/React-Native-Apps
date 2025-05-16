@@ -1,50 +1,53 @@
-# Welcome to your Expo app 👋
+# React Native Projects
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the **React Native Projects** repository!  
+This repo contains multiple React Native projects, each demonstrating different features, patterns, and best practices for building mobile applications with React Native.
 
-## Get started
+<!-- ## Projects
 
-1. Install dependencies
+- **Project 1:** [ProjectName1](./ProjectName1)  
+   _Brief description of Project 1._
 
-   ```bash
-   npm install
-   ```
+- **Project 2:** [ProjectName2](./ProjectName2)  
+   _Brief description of Project 2._
 
-2. Start the app
+- **Project 3:** [ProjectName3](./ProjectName3)  
+   _Brief description of Project 3._
 
-   ```bash
-   npx expo start
-   ```
+*(Add or update project names and descriptions as needed.)* -->
 
-In the output, you'll find options to open the app in a
+## Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    ```
+2. Navigate to a project folder:
+    ```bash
+    cd ProjectName1
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Run the project:
+    ```bash
+    npx react-native run-android
+    # or
+    npx react-native run-ios
+    ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Requirements
 
-## Get a fresh project
+- [Node.js](https://nodejs.org/)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup)
+- Android Studio or Xcode (for device emulation)
 
-When you're ready, run:
+## Contributing
 
-```bash
-npm run reset-project
-```
+Contributions are welcome!  
+Feel free to open issues or submit pull requests for improvements or new projects.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Happy coding!
