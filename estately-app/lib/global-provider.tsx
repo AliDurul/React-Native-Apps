@@ -1,7 +1,6 @@
 import React, { createContext, ReactNode, useContext } from "react";
 
-// import { getCurrentUser } from "./appwrite";
-import { getCurrentUser } from "./api";
+import { getCurrentUser } from "./appwrite";
 import useFetch from "./useFetch";
 
 interface GlobalContextType {
@@ -12,7 +11,7 @@ interface GlobalContextType {
 }
 
 interface User {
-  _id: string;
+  $id: string;
   name: string;
   email: string;
   avatar: string;
@@ -32,8 +31,8 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
   return (
     <GlobalContext.Provider
       value={{
-        isLogged: true,
-        user: { _id: '1', name: 'admin', email: 'admin@gmail.com', avatar: 'https://static.vecteezy.com/system/resources/thumbnails/004/607/791/small_2x/man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg' },
+        isLogged,
+        user,
         loading,
         refetch,
       }}

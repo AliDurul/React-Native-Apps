@@ -45,7 +45,7 @@ export const registerUser = async (email: string, password: string, username: st
     return fetchData(api, method, body);
 };
 
-export const signOutUser = async (token: string) => {
+export const logoutUser = async (token: string) => {
     const api = '/auth/logout';
     const method = 'POST';
 
