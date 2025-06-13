@@ -1,0 +1,50 @@
+{
+  "cli": {
+    "version": ">= 16.3.3",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APPWRITE_PROJECT_ID": "683ab9300013f86165cd",
+        "EXPO_PUBLIC_APPWRITE_ENDPOINT": "https://fra.cloud.appwrite.io/v1",
+        "EXPO_PUBLIC_APPWRITE_DATABASE_ID": "683ad5860036b286bcdc",
+        "EXPO_PUBLIC_APPWRITE_GALLERIES_COLLECTION_ID": "683ad71a001427844894",
+        "EXPO_PUBLIC_APPWRITE_REVIEWS_COLLECTION_ID": "683ad76e0014a288b114",
+        "EXPO_PUBLIC_APPWRITE_AGENTS_COLLECTION_ID": "683ad5d4001ebfa3b630",
+        "EXPO_PUBLIC_APPWRITE_PROPERTIES_COLLECTION_ID": "683ad7e0001200635249"
+      }
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_APPWRITE_PROJECT_ID": "683ab9300013f86165cd",
+        "EXPO_PUBLIC_APPWRITE_ENDPOINT": "https://fra.cloud.appwrite.io/v1",
+        "EXPO_PUBLIC_APPWRITE_DATABASE_ID": "683ad5860036b286bcdc",
+        "EXPO_PUBLIC_APPWRITE_GALLERIES_COLLECTION_ID": "683ad71a001427844894",
+        "EXPO_PUBLIC_APPWRITE_REVIEWS_COLLECTION_ID": "683ad76e0014a288b114",
+        "EXPO_PUBLIC_APPWRITE_AGENTS_COLLECTION_ID": "683ad5d4001ebfa3b630",
+        "EXPO_PUBLIC_APPWRITE_PROPERTIES_COLLECTION_ID": "683ad7e0001200635249"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APPWRITE_PROJECT_ID": "683ab9300013f86165cd",
+        "EXPO_PUBLIC_APPWRITE_ENDPOINT": "https://fra.cloud.appwrite.io/v1",
+        "EXPO_PUBLIC_APPWRITE_DATABASE_ID": "683ad5860036b286bcdc",
+        "EXPO_PUBLIC_APPWRITE_GALLERIES_COLLECTION_ID": "683ad71a001427844894",
+        "EXPO_PUBLIC_APPWRITE_REVIEWS_COLLECTION_ID": "683ad76e0014a288b114",
+        "EXPO_PUBLIC_APPWRITE_AGENTS_COLLECTION_ID": "683ad5d4001ebfa3b630",
+        "EXPO_PUBLIC_APPWRITE_PROPERTIES_COLLECTION_ID": "683ad7e0001200635249"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

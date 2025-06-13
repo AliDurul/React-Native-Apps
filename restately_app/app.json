@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.alidrl.restatelyapp"
     },
     "web": {
       "bundler": "metro",
@@ -50,6 +51,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "54458f07-f6d7-488b-8bff-a78e82499dc8"
+      }
     }
   }
 }
